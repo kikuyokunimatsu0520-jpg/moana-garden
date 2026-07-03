@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>個別AIサポート＆フォトセッション | Moana Garden Community Works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #4a7c59;
+      --green-light: #7aaa8a;
+      --green-pale: #e8f2ec;
+      --sky: #7ab3c8;
+      --sky-pale: #e8f4f9;
+      --gold: #b89d5e;
+      --sand: #f5f0e8;
+      --cream: #fdfaf5;
+      --brown: #6b5344;
+      --text: #3a3530;
+      --text-light: #6b6460;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.8;
+    }
+
+    /* ナビゲーション */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(253, 250, 245, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(74, 124, 89, 0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.1rem;
+      color: var(--green);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      display: block;
+      letter-spacing: 0.1em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+    .nav-links a.current { color: var(--green); }
+
+    /* ページヒーロー */
+    .page-hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/nature-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.55) saturate(1.1);
+    }
+
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        150deg,
+        rgba(0, 185, 220, 0.62) 0%,
+        rgba(40, 100, 50, 0.55) 100%
+      );
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      width: 100%;
+      padding: 160px 40px 90px;
+      text-align: center;
+    }
+
+    .page-hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 28px;
+      backdrop-filter: blur(4px);
+    }
+
+    .page-hero h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.6;
+      color: white;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+
+    .page-hero-sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.88);
+      letter-spacing: 0.05em;
+      line-height: 1.9;
+    }
+
+    /* セクション共通 */
+    section { padding: 100px 40px; }
+
+    .section-inner { max-width: 900px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 48px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(to right, var(--green), var(--gold));
+      margin: 20px auto 48px;
+    }
+
+    /* ストーリー */
+    .story { background: white; }
+
+    .story-text p {
+      color: var(--text-light);
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .story-highlight {
+      background: var(--green-pale);
+      border-left: 3px solid var(--green);
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem;
+      color: var(--green);
+      line-height: 1.7;
+      margin: 32px 0;
+    }
+
+    /* 流れ（ステップ） */
+    .flow { background: var(--sand); }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .flow-card {
+      background: white;
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .flow-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(74, 124, 89, 0.12);
+    }
+
+    .flow-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--green);
+      color: white;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+
+    .flow-icon {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+    }
+
+    .flow-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.05rem;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .flow-desc {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* こんな方に */
+    .for-whom { background: white; }
+
+    .for-whom-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .for-whom-list li {
+      background: var(--sky-pale);
+      border-radius: 12px;
+      padding: 18px 22px;
+      font-size: 0.9rem;
+      color: var(--text);
+      position: relative;
+      padding-left: 40px;
+    }
+
+    .for-whom-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 18px;
+      color: var(--sky);
+      font-weight: bold;
+    }
+
+    /* 料金・日程 */
+    .details { background: var(--green-pale); }
+
+    .details-card {
+      background: white;
+      border-radius: 20px;
+      padding: 48px;
+      box-shadow: 0 12px 40px rgba(74, 124, 89, 0.1);
+    }
+
+    .details-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(74, 124, 89, 0.15);
+      gap: 20px;
+    }
+
+    .details-row:last-child { border-bottom: none; }
+
+    .details-label {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.9rem;
+      color: var(--green);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .details-value {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      text-align: right;
+    }
+
+    /* 申し込みフォーム */
+    .apply { background: var(--sky-pale); }
+
+    .apply-form {
+      background: white;
+      border-radius: 20px;
+      padding: 48px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: 0.03em;
+    }
+
+    .form-group label .required {
+      color: #c05a5a;
+      font-size: 0.75rem;
+      margin-left: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid rgba(74, 124, 89, 0.25);
+      border-radius: 8px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--cream);
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--green);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .form-submit:hover {
+      background: #3d6a4a;
+      transform: translateY(-2px);
+    }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      text-align: center;
+      margin-top: 20px;
+      line-height: 1.7;
+    }
+
+    /* フッター */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.7);
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.3rem;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      margin-bottom: 32px;
+    }
+
+    .footer-bottom {
+      font-size: 0.75rem;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      section { padding: 60px 20px; }
+      .page-hero-content { padding: 120px 24px 60px; }
+      .flow-grid { grid-template-columns: 1fr; }
+      .for-whom-list { grid-template-columns: 1fr; }
+      .details-card, .apply-form { padding: 28px; }
+      .details-row { flex-direction: column; gap: 4px; }
+      .details-value { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ナビゲーション -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      Moana Garden
+      <span>community works</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#gallery">Gallery</a></li>
+      <li><a href="index.html#activities">Activities</a></li>
+      <li><a href="service.html" class="current">AI×フォト</a></li>
+      <li><a href="index.html#profile">Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- ページヒーロー -->
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-badge">NEW SERVICE</div>
+      <h1>個別AIサポート＆フォトセッション</h1>
+      <p class="page-hero-sub">
+        海や山の美しい景色の中で、AIとの対話を通して自分に向き合い、<br>
+        その時間をそのまま一枚の写真に残す。あなただけの特別なひとときです。
+      </p>
+    </div>
+  </section>
+
+  <!-- ストーリー -->
+  <section class="story" id="story">
+    <div class="section-inner">
+      <div class="section-label">Story</div>
+      <h2 class="section-title">なぜこのセッションを届けたいのか</h2>
+      <div class="divider"></div>
+      <div class="story-text">
+        <p>
+          私はこれまで「7つの習慣」を何度も学び直し、自分自身の考え方や生き方に向き合ってきました。また子育ての中では、息子の不登校という経験を通して、正解のない道を一緒に模索する時間も過ごしてきました。
+        </p>
+        <p>
+          会計事務所での実務経験、そして数々のイベントやコミュニティの事務局を担ってきた経験から、たくさんの方と接点を持ち、人と人、人と場をつなぎ、コミュニティをまとめる役割を担ってきました。
+        </p>
+        <div class="story-highlight">
+          そんな私だからこそお伝えできる、AIという新しい道具との向き合い方があります。
+        </div>
+        <p>
+          むずかしく考えなくて大丈夫です。パソコンやスマホの操作に自信がなくても、あなたのペースに合わせて、対話をしながら一緒に進めていきます。そして、その対話の時間を通して見えてきたあなたの表情を、海や山の美しい景色の中で写真に残します。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 流れ -->
+  <section class="flow" id="flow">
+    <div class="section-inner">
+      <div class="section-label">Flow</div>
+      <h2 class="section-title">セッションの流れ</h2>
+      <div class="divider"></div>
+      <div class="flow-grid">
+        <div class="flow-card">
+          <div class="flow-step">1</div>
+          <div class="flow-icon">💬</div>
+          <div class="flow-title">AI個別サポート</div>
+          <p class="flow-desc">初心者の方でも安心。あなたのペースに合わせて、AIとの対話や使い方を一緒に体験します。</p>
+        </div>
+        <div class="flow-card">
+          <div class="flow-step">2</div>
+          <div class="flow-icon">🍵</div>
+          <div class="flow-title">お茶・ランチタイム</div>
+          <p class="flow-desc">セッションの余韻を感じながら、お茶やランチを挟んでゆったりとお話しする時間です。</p>
+        </div>
+        <div class="flow-card">
+          <div class="flow-step">3</div>
+          <div class="flow-icon">📷</div>
+          <div class="flow-title">フォトセッション</div>
+          <p class="flow-desc">海または山の景色が美しい場所で、その日のあなたの自然な表情を写真に残します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- こんな方に -->
+  <section class="for-whom" id="for-whom">
+    <div class="section-inner">
+      <div class="section-label">For Whom</div>
+      <h2 class="section-title">こんな方におすすめです</h2>
+      <div class="divider"></div>
+      <ul class="for-whom-list">
+        <li>AIに興味はあるけれど、何から始めればいいか分からない</li>
+        <li>誰かに隣で教えてもらいながら、自分のペースで試したい</li>
+        <li>自分と向き合う時間と、自然の中でのひとときを両方楽しみたい</li>
+        <li>今の自分らしい表情を、写真として残しておきたい</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 料金・日程 -->
+  <section class="details" id="details">
+    <div class="section-inner">
+      <div class="section-label">Details</div>
+      <h2 class="section-title">料金・日程・場所</h2>
+      <div class="divider"></div>
+      <div class="details-card">
+        <div class="details-row">
+          <div class="details-label">料金</div>
+          <div class="details-value">5,000円（9/30までのお試し価格）<br>※移動費・お茶ランチ代は実費（駅から車移動の場合は別途500円）</div>
+        </div>
+        <div class="details-row">
+          <div class="details-label">所要時間</div>
+          <div class="details-value">約3時間</div>
+        </div>
+        <div class="details-row">
+          <div class="details-label">開催場所</div>
+          <div class="details-value">阪神間のおすすめスポット（お申し込み後にご相談のうえ決定）</div>
+        </div>
+        <div class="details-row">
+          <div class="details-label">日程</div>
+          <div class="details-value">モーニング（9:30-12:30）／ランチ（12:00-15:00）／アフタヌーン（14:00-17:00）から候補を3つお選びください</div>
+        </div>
+        <div class="details-row">
+          <div class="details-label">対象</div>
+          <div class="details-value">AI初心者の方（どなたでも）</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 申し込みフォーム -->
+  <section class="apply" id="apply">
+    <div class="section-inner">
+      <div class="section-label">Apply</div>
+      <h2 class="section-title">お申し込み・お問い合わせ</h2>
+      <div class="divider"></div>
+      <div class="apply-form">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSdmDuYM-unRaeHSdaotCpvnMxvOD6yKHUgqWjilBgLaJJvikw/viewform?embedded=true"
+          width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+        <p class="form-note">
+          送信後、内容を確認のうえ折り返しご連絡いたします。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer>
+    <div class="footer-logo">Moana Garden Community Works</div>
+    <p class="footer-tagline">人と自然が調和し、和やかに生きる場を創る</p>
+    <div class="footer-bottom">
+      © 2026 Moana Garden Community Works / 國松喜久代
+    </div>
+  </footer>
+
+</body>
+</html>

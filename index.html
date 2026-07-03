@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moana Garden Community Works | 國松喜久代</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #4a7c59;
+      --green-light: #7aaa8a;
+      --green-pale: #e8f2ec;
+      --sky: #7ab3c8;
+      --sky-pale: #e8f4f9;
+      --gold: #b89d5e;
+      --sand: #f5f0e8;
+      --cream: #fdfaf5;
+      --brown: #6b5344;
+      --text: #3a3530;
+      --text-light: #6b6460;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.8;
+    }
+
+    /* ナビゲーション */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(253, 250, 245, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(74, 124, 89, 0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.1rem;
+      color: var(--green);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-logo span {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      display: block;
+      letter-spacing: 0.1em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+
+    /* ヒーロー */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/hero-bg.png');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.5) saturate(0.1) grayscale(0.6);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        150deg,
+        rgba(0, 185, 220, 0.72) 0%,
+        rgba(0, 155, 210, 0.68) 40%,
+        rgba(0, 210, 225, 0.60) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      max-width: 1100px;
+      width: 100%;
+      padding: 140px 60px 100px;
+      align-items: center;
+      direction: rtl;
+    }
+
+    .hero-content > * { direction: ltr; }
+
+    .hero-text {
+      text-align: left;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 32px;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.7;
+      color: white;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: #a8d8b0;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 40px;
+      letter-spacing: 0.05em;
+      line-height: 1.9;
+    }
+
+    .hero-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.3rem;
+      color: white;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-name small {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      display: block;
+      margin-top: 4px;
+      letter-spacing: 0.15em;
+    }
+
+    .hero-photo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .hero-photo {
+      width: 100%;
+      max-width: 380px;
+      border-radius: 24px 24px 0 0;
+      object-fit: cover;
+      object-position: top center;
+      height: 520px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      border: 3px solid rgba(255,255,255,0.2);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      animation: fadeInUp 2s ease infinite;
+    }
+
+    .scroll-hint::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+    }
+
+    @keyframes fadeInUp {
+      0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
+      50% { opacity: 1; transform: translateX(-50%) translateY(-8px); }
+    }
+
+    /* セクション共通 */
+    section { padding: 100px 40px; }
+
+    .section-inner { max-width: 960px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 48px;
+      line-height: 1.5;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(to right, var(--green), var(--gold));
+      margin: 20px 0 48px;
+    }
+
+    /* Aboutセクション */
+    .about {
+      background: white;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text-light);
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .about-highlight {
+      background: var(--green-pale);
+      border-left: 3px solid var(--green);
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem;
+      color: var(--green);
+      line-height: 1.7;
+      margin-top: 32px;
+    }
+
+    .about-photo {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(74, 124, 89, 0.18);
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .about-photo:hover img {
+      transform: scale(1.03);
+    }
+
+    /* フォトギャラリーセクション */
+    .gallery {
+      background: var(--sand);
+      padding: 80px 0 0;
+    }
+
+    .gallery .section-inner {
+      padding: 0 40px;
+      margin-bottom: 40px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      width: 100%;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover {
+      opacity: 0.88;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Activitiesセクション */
+    .activities {
+      background: white;
+    }
+
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .activity-card {
+      background: var(--sand);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(74, 124, 89, 0.12);
+    }
+
+    .activity-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .activity-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.05rem;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .activity-desc {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* 新サービス バナー */
+    .promo-banner {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 40px;
+      text-align: center;
+    }
+
+    .promo-banner-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/photo1.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.5) saturate(1.05);
+    }
+
+    .promo-banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        150deg,
+        rgba(0, 185, 220, 0.65) 0%,
+        rgba(40, 100, 50, 0.55) 100%
+      );
+    }
+
+    .promo-banner-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .promo-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 24px;
+      backdrop-filter: blur(4px);
+    }
+
+    .promo-banner h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+      font-weight: 400;
+      color: white;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+
+    .promo-banner p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 36px;
+      letter-spacing: 0.03em;
+      line-height: 1.9;
+    }
+
+    .promo-btn {
+      display: inline-block;
+      background: white;
+      color: var(--green);
+      text-decoration: none;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .promo-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    }
+
+    /* 実績セクション */
+    .works { background: var(--sky-pale); }
+
+    .works-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .works-text p {
+      font-size: 1rem;
+      color: var(--text-light);
+      line-height: 2;
+      background: white;
+      border-left: 3px solid var(--sky);
+      padding: 20px 28px;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .works-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .works-photo {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .works-photo:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+    }
+
+    .works-photo img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .works-photos { grid-template-columns: 1fr; }
+    }
+
+    /* 自然背景セクション */
+    .nature-banner {
+      position: relative;
+      padding: 120px 40px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .nature-banner-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/nature-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      filter: brightness(0.75) saturate(1.15);
+    }
+
+    .nature-banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(60, 120, 60, 0.2),
+        rgba(40, 100, 50, 0.3)
+      );
+    }
+
+    .nature-banner-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .nature-banner-content blockquote {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+      color: white;
+      line-height: 1.9;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    }
+
+    .nature-banner-content cite {
+      display: block;
+      margin-top: 24px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.15em;
+      font-style: normal;
+    }
+
+    /* Moana Gardenセクション */
+    .moana { background: white; }
+
+    .moana-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .moana-visual {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(74, 124, 89, 0.2);
+      position: relative;
+    }
+
+    .moana-visual img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .moana-visual:hover img {
+      transform: scale(1.04);
+    }
+
+    .moana-visual-badge {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      padding: 12px 20px;
+      border-radius: 12px;
+    }
+
+    .moana-logo {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.1rem;
+      color: var(--green);
+      letter-spacing: 0.05em;
+    }
+
+    .moana-logo-sub {
+      font-size: 0.72rem;
+      color: var(--text-light);
+      letter-spacing: 0.15em;
+    }
+
+    .moana-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .tag {
+      background: var(--green-pale);
+      color: var(--green);
+      border: 1px solid rgba(74, 124, 89, 0.2);
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+    }
+
+    .moana-text p {
+      color: var(--text-light);
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .moana-quote {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.05rem;
+      color: var(--brown);
+      line-height: 1.8;
+      padding: 24px 0;
+      border-top: 1px solid rgba(184, 157, 94, 0.3);
+      border-bottom: 1px solid rgba(184, 157, 94, 0.3);
+      margin: 32px 0;
+    }
+
+    /* プロフィールセクション */
+    .profile { background: var(--green-pale); }
+
+    .profile-card {
+      background: white;
+      border-radius: 24px;
+      padding: 60px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .profile-avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(74, 124, 89, 0.25);
+      border: 4px solid white;
+    }
+
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .profile-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.6rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .profile-kana {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      letter-spacing: 0.15em;
+      margin-bottom: 24px;
+    }
+
+    .profile-desc {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 32px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill {
+      background: var(--sand);
+      color: var(--text);
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+    }
+
+    /* フッター */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.7);
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.3rem;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      margin-bottom: 32px;
+    }
+
+    .footer-bottom {
+      font-size: 0.75rem;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      section { padding: 60px 20px; }
+      .hero-content {
+        grid-template-columns: 1fr;
+        padding: 100px 24px 60px;
+        gap: 0;
+        direction: ltr;
+      }
+      .hero-photo-wrap {
+        display: flex;
+        justify-content: center;
+        margin-top: 32px;
+      }
+      .hero-photo {
+        max-width: 280px;
+        height: 360px;
+        border-radius: 16px 16px 0 0;
+      }
+      .about-grid, .moana-inner { grid-template-columns: 1fr; gap: 40px; }
+      .activities-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .profile-card { grid-template-columns: 1fr; padding: 32px; }
+      .profile-avatar { margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ナビゲーション -->
+  <nav>
+    <div class="nav-logo">
+      Moana Garden
+      <span>community works</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="service.html">AI×フォト</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#moana">Moana Garden</a></li>
+      <li><a href="#profile">Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- ヒーロー -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">Moana Garden Community Works</div>
+        <h1>
+          人と自然が調和し、<br>
+          <em>和やかに生きる場</em>を創る
+        </h1>
+        <p class="hero-sub">
+          兵庫・阪神間を拠点に、人と人、人と自然、<br>
+          暮らしと文化をやさしくつなぐ場づくりを行っています
+        </p>
+        <div class="hero-name">
+          國松 喜久代
+          <small>Kikuyo Kunimatsu / きくちゃん</small>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <img class="hero-photo" src="images/hero-portrait.jpg" alt="國松喜久代">
+      </div>
+    </div>
+    <div class="scroll-hint">scroll</div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="section-inner">
+      <div class="section-label">About</div>
+      <h2 class="section-title">Kikuyo Kunimatsu</h2>
+      <div class="divider"></div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            会計・事務局・イベントサポート・写真撮影などの実務力を土台に、人と自然、人と人、暮らしと文化をやさしくつなぐ場づくりを行っています。
+          </p>
+          <p>
+            長年、地域のコミュニティ農園に関わり、畑で野菜を育てること、手づくり味噌や漬物、季節の食を分かち合うことを通して、自然とともにある暮らしの知恵を大切にしてきました。
+          </p>
+          <p>
+            感性だけでなく、現実を動かす力があることが大きな強みです。名簿作成、会計、連絡調整、案内文づくり、チラシ制作、当日の段取りなど、見えないところで人や場を支える仕事を、誠実に丁寧に積み重ねます。
+          </p>
+          <div class="about-highlight">
+            「人と自然が調和し、和やかに生きる場を創る」
+          </div>
+        </div>
+        <div class="about-photo">
+          <img src="images/41226570-22C5-4AD0-AB99-A163D9C55A30.jpg" alt="きくちゃん 和装">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フォトギャラリー -->
+  <section class="gallery" id="gallery">
+    <div class="section-inner">
+      <div class="section-label">Gallery</div>
+      <h2 class="section-title">フォトギャラリー</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="images/gallery1.jpg" alt="桜の下でフラ">
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery2.jpg" alt="布引ハーブ園ハイキング">
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery3.jpg" alt="西宮キャンプ場">
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery4.jpg" alt="武ちゃんファーム">
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery5.jpg" alt="13の扉">
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery6.jpg" alt="田植え">
+      </div>
+    </div>
+  </section>
+
+  <!-- 自然の言葉バナー -->
+  <div class="nature-banner">
+    <div class="nature-banner-bg"></div>
+    <div class="nature-banner-overlay"></div>
+    <div class="nature-banner-content">
+      <blockquote>
+        大地に根を下ろし、<br>
+        海のように広がり、<br>
+        自分らしく花ひらく場所へ。
+      </blockquote>
+      <cite>— Moana Garden Community Works</cite>
+    </div>
+  </div>
+
+  <!-- Activities -->
+  <section class="activities" id="activities">
+    <div class="section-inner">
+      <div class="section-label">Activities</div>
+      <h2 class="section-title">活動のご紹介</h2>
+      <div class="divider"></div>
+      <div class="activities-grid">
+        <div class="activity-card">
+          <div class="activity-icon">🌱</div>
+          <div class="activity-title">コミュニティ農園</div>
+          <p class="activity-desc">畑で野菜を育て、季節の恵みを分かち合います。手づくり味噌、漬物、保存食など、暮らしの知恵をみんなで学び合う場です。</p>
+        </div>
+        <div class="activity-card">
+          <div class="activity-icon">🌺</div>
+          <div class="activity-title">フラ・ヨガ・ウォーキング</div>
+          <p class="activity-desc">身体を動かし、自分を感じる時間。ハワイのアロハの精神と日本の「和」が響き合う、やさしい場をつくります。</p>
+        </div>
+        <div class="activity-card">
+          <div class="activity-icon">🏔️</div>
+          <div class="activity-title">山部・ハイキング</div>
+          <p class="activity-desc">自然の中に身を置き、心と身体をリフレッシュ。布引ハーブ園など、神戸・阪神間の自然を歩きます。</p>
+        </div>
+        <div class="activity-card">
+          <div class="activity-icon">👘</div>
+          <div class="activity-title">着物リメイク・日本文化</div>
+          <p class="activity-desc">大切な着物に新しい命を吹き込む着物リメイク。日本の季節行事、食文化、暦など、暮らしの中にある文化を手渡します。</p>
+        </div>
+        <div class="activity-card">
+          <div class="activity-icon">✈️</div>
+          <div class="activity-title">旅・リトリート</div>
+          <p class="activity-desc">子育て後の女性を対象にしたハワイリトリートや淡路島リトリートを構想中。「自分にかえる」をテーマにした旅です。</p>
+        </div>
+        <div class="activity-card">
+          <div class="activity-icon">📷</div>
+          <div class="activity-title">写真撮影・事務局サポート</div>
+          <p class="activity-desc">イベント・プロジェクトの事務局として、名簿管理・会計・連絡調整・チラシ制作・写真撮影などで場を支えます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 新サービス バナー -->
+  <div class="promo-banner">
+    <div class="promo-banner-bg"></div>
+    <div class="promo-banner-overlay"></div>
+    <div class="promo-banner-content">
+      <div class="promo-badge">NEW SERVICE</div>
+      <h2>個別AIサポート＆フォトセッション、はじめました</h2>
+      <p>
+        海や山の美しい景色の中で、AIとの対話を通して自分に向き合い、<br>
+        その時間をそのまま一枚の写真に残す。あなただけの特別なひとときです。
+      </p>
+      <a href="service.html" class="promo-btn">詳しくはこちら →</a>
+    </div>
+  </div>
+
+  <!-- 実績セクション -->
+  <section class="works" id="works">
+    <div class="section-inner">
+      <div class="section-label">Works</div>
+      <h2 class="section-title">事務局 / イベントサポート 実績</h2>
+      <div class="divider"></div>
+      <div class="works-inner">
+        <div class="works-text">
+          <p>
+            ㈱グレート・ターニング イベントサポート（麻ミットわ、まこもまつり、縄文方舟まつりなど）、宇佐見裕子7つの習慣実践会 事務局、公式ライン運営サポート、マッキー次元上昇ウォーク 事務局など。
+          </p>
+        </div>
+        <div class="works-photos">
+          <div class="works-photo">
+            <img src="images/370F94DD-C736-40F2-B0A4-D85442A81891.jpg" alt="イベントサポート実績">
+          </div>
+          <div class="works-photo">
+            <img src="images/0D63B46E-EFE8-4580-A371-5063DF20114C.jpg" alt="イベントサポート実績">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Moana Garden -->
+  <section class="moana" id="moana">
+    <div class="section-inner">
+      <div class="section-label">Moana Garden</div>
+      <h2 class="section-title">Moana Gardenとは</h2>
+      <div class="divider"></div>
+      <div class="moana-inner">
+        <div class="moana-visual">
+          <img src="images/moana-group.jpg" alt="Moana Garden リトリート">
+          <div class="moana-visual-badge">
+            <div class="moana-logo">Moana Garden</div>
+            <div class="moana-logo-sub">community works</div>
+          </div>
+        </div>
+        <div class="moana-text">
+          <div class="moana-tags">
+            <span class="tag">畑・食</span>
+            <span class="tag">ヨガ</span>
+            <span class="tag">フラ</span>
+            <span class="tag">ハイキング</span>
+            <span class="tag">着物リメイク</span>
+            <span class="tag">旅</span>
+            <span class="tag">リトリート</span>
+            <span class="tag">日本文化</span>
+          </div>
+          <p style="margin-top: 28px;">
+            「Moana」はハワイ語で「無限に広がる海」を意味します。「Garden」は、人が根を下ろし、育ち合う庭。自由さと安心感、旅と暮らし、祈りと日常が同時に存在する場所です。
+          </p>
+          <div class="moana-quote">
+            子育てを終えた女性、これまで家族や仕事を優先してきた女性、これからの人生をもう一度自分の感覚で選び直したい女性たちへ。
+          </div>
+          <p>
+            畑、食、ヨガ、フラ、ハイキング、着物リメイク、旅、リトリートなどを通して、参加する人がほっと自分に戻り、静かに力を取り戻せる時間をつくることを大切にしています。
+          </p>
+          <p>
+            派手な消費ではなく、「身体で感じる」「手を動かす」「自然の中に身を置く」「人と語り合う」ことを通して、自分に戻っていく時間です。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Profile -->
+  <section class="profile" id="profile">
+    <div class="section-inner">
+      <div class="section-label">Profile</div>
+      <h2 class="section-title">プロフィール</h2>
+      <div class="divider"></div>
+      <div class="profile-card">
+        <div class="profile-avatar">
+          <img src="images/photo2.jpg" alt="國松喜久代">
+        </div>
+        <div>
+          <div class="profile-name">國松 喜久代</div>
+          <div class="profile-kana">Kikuyo Kunimatsu ／ きくちゃん</div>
+          <p class="profile-desc">
+            兵庫・阪神間を拠点に活動。会計事務所での実務経験を土台に、地域・自然・文化・女性のつながりを育む活動を行っています。コミュニティ農園の運営サポート、各種イベントの事務局、写真撮影、Canvaによるデザインなど、見えないところで場を支える力が強みです。<br><br>
+            人生の後半を迎える女性たちが、自分らしさや女性性、自然とのつながりを取り戻していくための場「Moana Garden」を育てています。日本の和とハワイのアロハが響き合う、やさしく開かれた世界観を大切にしています。
+          </p>
+          <div class="skills">
+            <span class="skill">事務局運営</span>
+            <span class="skill">会計管理</span>
+            <span class="skill">イベントサポート</span>
+            <span class="skill">写真撮影</span>
+            <span class="skill">Canvaデザイン</span>
+            <span class="skill">コミュニティ農園</span>
+            <span class="skill">食育</span>
+            <span class="skill">日本文化</span>
+            <span class="skill">リトリート企画</span>
+            <span class="skill">AI活用サポート</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer>
+    <div class="footer-logo">Moana Garden Community Works</div>
+    <p class="footer-tagline">人と自然が調和し、和やかに生きる場を創る</p>
+    <div class="footer-bottom">
+      © 2026 Moana Garden Community Works / 國松喜久代
+    </div>
+  </footer>
+
+</body>
+</html>
